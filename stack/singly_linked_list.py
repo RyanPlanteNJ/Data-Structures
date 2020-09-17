@@ -29,7 +29,7 @@ class LinkedList:
     def remove_tail(self):
         if self.head is None and self.tail is None:
             return None
-        elif self.head == self.tail:
+        if self.head == self.tail:
             value = self.tail.get_value()
             self.head = None
             self.tail = None
@@ -44,35 +44,48 @@ class LinkedList:
             self.tail.set_next(None)
             return value
 
+    def add_to_head(self, value):
+        new_node = Node(value)
+        if self.head is None and self.tail is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.head.set_next(new_node)
+            self.head = new_node
+
     def remove_head(self):
         if self.head is None and self.tail is None:
             return None
-        elif self.head == self.tail:
+        if self.head == self.tail:
             value = self.head.get_value()
             self.head = None
             self.tail = None
             return value
         else:
             value = self.head.get_value()
-            self.head = self.head.get_next()
+            current_node = self.tail
+
+            while current_node.get_next() != self.head:
+                current_node = current_node.get_next()
+            self.head = current_node
+            self.head.set_next(None)
             return value
 
-        def len(self):
-            temp = self.head
-            count = 0
+    def len(self):
+        temp = self.head
+        count = 0
 
-            while(temp):
-                count += 1
-                temp = temp.next_node
-            return count
+        while(temp):
+            count += 1
+            temp = temp.get_next()
+        return count
 
-        def contains(self, value):
-            if self.head is None:
-                return False
-            current_node = self.head
-
-            while current_node is not None:
-                if current_node.value == value:
-                    return True
-                current_node = current_node.next_node
+    def contains(self, value):
+        if self.head is None:
             return False
+        current_node = self.head
+        while current_node is not None:
+            if current_node.value == value:
+                return True
+            current_node = current_node.get_next()
+        return False
