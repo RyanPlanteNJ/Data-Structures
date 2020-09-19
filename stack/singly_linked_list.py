@@ -51,7 +51,9 @@ class LinkedList:
             self.tail = new_node
         else:
             self.head.set_next(new_node)
+            self.head.prev = new_node
             self.head = new_node
+
 
     def remove_head(self):
         if self.head is None and self.tail is None:
