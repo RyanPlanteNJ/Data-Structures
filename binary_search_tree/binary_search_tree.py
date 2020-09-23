@@ -1,7 +1,7 @@
 """
-Binary search trees are a data structure that enforce an ordering over 
-the data they store. That ordering in turn makes it a lot more efficient 
-at searching for a particular piece of data in the tree. 
+Binary search trees are a data structure that enforce an ordering over
+the data they store. That ordering in turn makes it a lot more efficient
+at searching for a particular piece of data in the tree.
 
 This part of the project comprises two days:
 1. Implement the methods `insert`, `contains`, `get_max`, and `for_each`
@@ -17,20 +17,51 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        if value < self.value:
+            if self.left != None:
+                self.left.insert(value)
+            else:
+                self.left = BSTNode(value)
+        elif value >= self.value:
+            if self.right != None:
+                self.right.insert(value)
+            else:
+                self.right = BSTNode(value)
 
-    # Return True if the tree contains the value
-    # False if it does not
     def contains(self, target):
-        pass
+        if target == self.value:
+            return True
+        if target < self.value:
+            if self.left is None:
+                return False
+            found = self.left.contains(target)
+        if target >= self.value:
+            if self.right is None:
+                return False
+            found = self.right.contains(target)
 
-    # Return the maximum value found in the tree
+        return found
+
+
+   # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        current = self
+        while(current.right):
+            current = current.right
+        return current.value
+
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+        if self.value is None:
+            pass
+        else:
+            fn(self.value)
+            if self.left is not None:
+                self.left.for_each(fn)
+            if self.right is not None:
+                self.right.for_each(fn)
+
 
     # Part 2 -----------------------
 
@@ -73,13 +104,13 @@ bst.insert(3)
 bst.insert(4)
 bst.insert(2)
 
-bst.bft_print()
-bst.dft_print()
-
-print("elegant methods")
-print("pre order")
-bst.pre_order_dft()
-print("in order")
-bst.in_order_dft()
-print("post order")
-bst.post_order_dft()  
+# bst.bft_print()
+# bst.dft_print()
+#
+# print("elegant methods")
+# print("pre order")
+# bst.pre_order_dft()
+# print("in order")
+# bst.in_order_dft()
+# print("post order")
+# bst.post_order_dft()
