@@ -15,12 +15,14 @@ Stretch: What if you could only use instances of your Stack class to implement t
 """
 
 from doubly_linked_list import DoublyLinkedList
+# from singly_linked_list import LinkedList
 
 ## if linked list
 class Queue:
     def __init__(self):
         self.size = 0
         self.storage = DoublyLinkedList()
+        # self.storage = LinkedList()
 
     def len(self):
         return self.size

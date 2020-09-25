@@ -11,12 +11,14 @@ return elements in Last In First Out order.
    implementing a Stack?
 """
 from doubly_linked_list import DoublyLinkedList
+# from singly_linked_list import LinkedList
 
 ## if linked list
 class Stack:
     def __init__(self):
         self.size = 0
         self.storage = DoublyLinkedList()
+        #sef.storage = LinkedList()
 
     def len(self):
         return self.size
