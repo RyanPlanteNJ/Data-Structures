@@ -14,15 +14,17 @@ Stretch: What if you could only use instances of your Stack class to implement t
          What would that look like? How many Stacks would you need? Try it!
 """
 
-from singly_linked_list import LinkedList
+from doubly_linked_list import DoublyLinkedList
+# from singly_linked_list import LinkedList
 
 ## if linked list
 class Queue:
     def __init__(self):
         self.size = 0
-        self.storage = LinkedList()
+        self.storage = DoublyLinkedList()
+        # self.storage = LinkedList()
 
-    def __len__(self):
+    def len(self):
         return self.size
 
     def enqueue(self, value):
@@ -33,7 +35,7 @@ class Queue:
         if self.size == 0:
             return None
         self.size -= 1
-        node = self.storage.remove_head()
+        node = self.storage.remove_from_head()
         return node
 
 ## if Array
